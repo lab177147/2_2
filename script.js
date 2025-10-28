@@ -38,14 +38,16 @@
 
   cw2.addEventListener("click", function() {
     answer.innerHTML = "Ładowanie danych...";
-
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response =>
-        response.json())
-      .then(posts => {
-        console.log("Wszystkie posty:");
-        console.table(posts);
-        let html = `
+    const popup = document.getElementById("loadingPopup");
+    popup.style.display = "flex";
+    setTimeout(() => {
+      fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response =>
+          response.json())
+        .then(posts => {
+          console.log("Wszystkie posty:");
+          console.table(posts);
+          let html = `
           <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
             <thead style="background-color: #f2f2f2;">
               <tr>
@@ -57,19 +59,22 @@
             <tbody>
         `;
 
-        posts.forEach(post => {
-          html += `
+          posts.forEach(post => {
+            html += `
             <tr>
               <td>${post.id}</td>
               <td>${post.title}</td>
               <td>${post.body}</td>
             </tr>
           `;
-        });
+          });
 
-        html += `</tbody></table>`;
-        answer.innerHTML = html;
-      })
+          html += `</tbody></table>`;
+          answer.innerHTML = html;
+          const popup = document.getElementById("loadingPopup");
+          popup.style.display = "none";
+        })
+    }, 1000);
   });
 
 
