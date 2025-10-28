@@ -43,6 +43,8 @@
       .then(response =>
         response.json())
       .then(posts => {
+        console.log("Wszystkie posty:");
+        console.table(posts);
         let html = `
           <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
             <thead style="background-color: #f2f2f2;">
