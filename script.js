@@ -37,8 +37,39 @@
   })
 
   cw2.addEventListener("click", function() {
-    //TODO
-  })
+    answer.innerHTML = "Ładowanie danych...";
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response =>
+        response.json())
+      .then(posts => {
+        let html = `
+          <table border="1" cellpadding="8" cellspacing="0" style="border-collapse: collapse; width: 100%;">
+            <thead style="background-color: #f2f2f2;">
+              <tr>
+                <th>ID</th>
+                <th>Tytuł</th>
+                <th>Treść</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        posts.forEach(post => {
+          html += `
+            <tr>
+              <td>${post.id}</td>
+              <td>${post.title}</td>
+              <td>${post.body}</td>
+            </tr>
+          `;
+        });
+
+        html += `</tbody></table>`;
+        answer.innerHTML = html;
+      })
+  });
+
 
   cw3.addEventListener("click", function() {
     //TODO

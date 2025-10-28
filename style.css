@@ -2,3 +2,24 @@ html {
   height: 100%;
   width: 100%;
 }
+
+table {
+  font-family: Arial, sans-serif;
+  border: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+th,
+td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
